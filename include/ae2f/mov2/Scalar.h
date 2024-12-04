@@ -6,7 +6,7 @@
 
 #include <ae2f/Pack/Beg.h>
 
-typedef ae2f_Mov2Def(ae2f_MovScalar_t) ae2f_Mov2Scalar_t;
+typedef ae2f_Mov2DotDef(ae2f_MovScalar_t) ae2f_Mov2Scalar_t;
 
 #include <ae2f/Pack/End.h>
 

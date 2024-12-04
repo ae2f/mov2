@@ -14,27 +14,14 @@ include(GNUInstallDirs)
 add_library(
     ${PROJECT_NAME}
     INTERFACE
-
-    "hin/Int.h.in"
-    "include/ae2f/mov/Int.h"
     "include/ae2f/mov2/Def.h"
+    "include/ae2f/mov2/Def.hpp"
     "include/ae2f/mov2/Vec.h"
+    "include/ae2f/mov2/Vec.hpp"
     "include/ae2f/mov2/Scalar.h"
 )
 
-target_link_libraries(${PROJECT_NAME} INTERFACE Core)
-
-configure_file(${PROJECT_SOURCE_DIR}/hin/Int.h.in ${PROJECT_SOURCE_DIR}/include/ae2f/mov/Int.h)
-
-if(ae2f_float STREQUAL "float")
-set(ae2f_float_id 0)
-elseif(ae2f_float STREQUAL "double")
-set(ae2f_float_id 1)
-elseif(ae2f_float STREQUAL "long double")
-set(ae2f_float_id 2)
-endif()
-
-configure_file(${PROJECT_SOURCE_DIR}/hin/Float.h.in ${PROJECT_SOURCE_DIR}/include/ae2f/mov/Float.h)
+target_link_libraries(${PROJECT_NAME} INTERFACE mov)
 
 
 unset(ae2f_float_id)
