@@ -1,3 +1,3 @@
-[submodule "mod/ae2f/Core"]
-	path = mod/ae2f/Core
-	url = https://github.com/ae2f/Core
+[submodule "mod/ae2f/mov"]
+	path = mod/ae2f/mov
+	url = https://github.com/ae2f/mov

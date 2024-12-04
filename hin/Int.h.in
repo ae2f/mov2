@@ -1,0 +1,16 @@
+#ifndef ae2f_mov_Int_h
+#define ae2f_mov_Int_h
+
+#include <stdint.h>
+#include <ae2f/Call.h>
+
+#if @ae2f_mov_IS_64@
+#define ae2f_MovBitCount 64
+typedef uint64_t ae2f_MovScalar_t;
+typedef int64_t ae2f_MovVec_t;
+#else 
+#define ae2f_MovBitCount 32
+typedef uint32_t ae2f_MovScalar_t;
+typedef int32_t ae2f_MovVec_t;
+#endif
+#endif
