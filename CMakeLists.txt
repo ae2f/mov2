@@ -17,8 +17,8 @@ add_library(
     "include/ae2f/mov2/Def.h"
     "include/ae2f/mov2/Def.hpp"
     "include/ae2f/mov2/Vec.h"
-    "include/ae2f/mov2/Vec.hpp"
     "include/ae2f/mov2/Scalar.h"
+    "include/ae2f/mov2/Col.h"
 )
 
 target_link_libraries(${PROJECT_NAME} INTERFACE mov)
