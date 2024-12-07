@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
-project(mov2 VERSION 0.0.1)
+project(mov2 VERSION 1.0.1)
 enable_testing()
 if(NOT TARGET ${PROJECT_NAME})
+
+set(CMAKE_CXX_STANDARD_REQUIRED 20)
 
 option(ae2f_IS_SHARED "Is a shared library or static one." OFF)
 option(ae2f_mov_IS_64 "Would you use the Prm-Vec as 64-bit integer?" OFF)

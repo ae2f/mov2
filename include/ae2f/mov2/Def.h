@@ -20,7 +20,8 @@
 #include <ae2f/errGlob.h>
 #include "Vec.h"
 
-/// @tparam type
+/// @tparam vectype type for vec
+/// @tparam axistype type for axis
 /// @brief 
 /// Rotate the vector in a axis. \n
 /// Notice that it will define a function, not invoking.
@@ -29,9 +30,10 @@
 /// @param rot Rotating angle
 /// @return @ref ae2f_errGlob_OK
 /// @exception @ref ae2f_errGlob_PTR_IS_NULL
-#define ae2f_Mov2DotRotDefName(type) ae2f_Mov2DotRot_##type
+#define ae2f_Mov2DotRotDefName(vectype, axistype) ae2f_Mov2DotRot_##vectype##_##axistype##_func
 
-/// @tparam type
+/// @tparam vectype type for vec
+/// @tparam axistype type for axis
 /// @brief 
 /// Rotate the vector in a axis. \n
 /// Notice that it will define a function, not invoking.
@@ -40,13 +42,13 @@
 /// @param rot Rotating angle
 /// @return @ref ae2f_errGlob_OK
 /// @exception @ref ae2f_errGlob_PTR_IS_NULL
-#define ae2f_Mov2DotRotDef(type) inline ae2f_err_t  \
-ae2f_Mov2DotRotDefName(type) ( \
-    ae2f_struct ae2f_Mov2DotDefName(type)* vec, \
-    const ae2f_struct ae2f_Mov2DotDefName(type)* axis, \
+#define ae2f_Mov2DotRotDef(vectype, axistype) inline ae2f_err_t  \
+ae2f_Mov2DotRotDefName(vectype, axistype) ( \
+    ae2f_struct ae2f_Mov2DotDefName(vectype)* vec, \
+    const ae2f_struct ae2f_Mov2DotDefName(axistype)* axis, \
     ae2f_float_t rot) { \
     if(!vec) return ae2f_errGlob_PTR_IS_NULL; \
-    const ae2f_struct ae2f_Mov2DotDefName(type) __axisloc = ae2f_RecordMk(ae2f_struct ae2f_Mov2DotDefName(type), 0, 0); \
+    const ae2f_struct ae2f_Mov2DotDefName(axistype) __axisloc = ae2f_RecordMk(ae2f_struct ae2f_Mov2DotDefName(axistype), 0, 0); \
     if(!axis) axis = &__axisloc; \
     const ae2f_Mov2VecF_t \
     /** sin, cos  */ \
@@ -55,11 +57,11 @@ ae2f_Mov2DotRotDefName(type) ( \
         ae2f_MovFloatPost(sin)(rot), \
         ae2f_MovFloatPost(cos)(rot) \
     );   \
-    const ae2f_struct ae2f_Mov2DotDefName(type) \
+    const ae2f_struct ae2f_Mov2DotDefName(axistype) \
     trans = ae2f_RecordMk( \
-        ae2f_struct ae2f_Mov2DotDefName(type),  \
+        ae2f_struct ae2f_Mov2DotDefName(axistype),  \
         vec->x - axis->x, \
-        vec->y = axis->y \
+        vec->y - axis->y \
     ); \
     vec->x = trans.x * ___.y + trans.y * ___.x + axis->x; \
     vec->x = trans.y * ___.y + trans.x * ___.x + axis->y; \
@@ -73,7 +75,7 @@ ae2f_Mov2DotRotDefName(type) ( \
 /// Guess if `pos` is in `rect`.
 /// @param pos  Position
 /// @param rect Rect
-#define ae2f_Mov2RectColGetDefName(type) ae2f_Mov2RectColGet_##type
+#define ae2f_Mov2RectColGetDefName(type) ae2f_Mov2RectColGet_##type##_func
 
 /// @tparam type
 /// @brief
@@ -105,7 +107,8 @@ ae2f_Mov2Col_t ae2f_Mov2RectColGetDefName(type) \
 }
 
 
-/// @tparam type
+/// @tparam vectype type for pos
+/// @tparam axistype type for axis
 /// @brief
 /// Guess if `pos` is in `rect` suggesting 
 /// @param pos
@@ -117,7 +120,7 @@ ae2f_Mov2Col_t ae2f_Mov2RectColGetDefName(type) \
 /// @see ae2f_Mov2DotRotDef
 /// @param rot
 /// @see ae2f_Mov2DotRotDef
-#define ae2f_Mov2RectRotColGetDefName(type) ae2f_Mov2RectRotColGet_##type
+#define ae2f_Mov2RectRotColGetDefName(vectype, axistype) ae2f_Mov2RectRotColGet_##vectype##_##axistype##_func
 
 /// @tparam type
 /// @brief
@@ -131,19 +134,19 @@ ae2f_Mov2Col_t ae2f_Mov2RectColGetDefName(type) \
 /// @see ae2f_Mov2DotRotDef
 /// @param rot
 /// @see ae2f_Mov2DotRotDef
-#define ae2f_Mov2RectRotColGetDef(type) \
-inline ae2f_Mov2Col_t ae2f_Mov2RectRotColGetDefName(type)( \
-    const ae2f_struct ae2f_Mov2DotDefName(type)* pos, \
-    const ae2f_struct ae2f_Mov2RectDefName(type)* rect, \
-    const ae2f_struct ae2f_Mov2DotDefName(type)* axis, \
+#define ae2f_Mov2RectRotColGetDef(vectype, axistype) \
+inline ae2f_Mov2Col_t ae2f_Mov2RectRotColGetDefName(vectype, axistype)( \
+    const ae2f_struct ae2f_Mov2DotDefName(vectype)* pos, \
+    const ae2f_struct ae2f_Mov2RectDefName(vectype)* rect, \
+    const ae2f_struct ae2f_Mov2DotDefName(axistype)* axis, \
     ae2f_float_t rot \
 ) { \
-    const ae2f_struct ae2f_Mov2DotDefName(type) axisloc = {.x = 0, .y = 0}; \
-    ae2f_struct ae2f_Mov2DotDefName(type) posloc = {.x = 0, .y = 0}; \
+    const ae2f_struct ae2f_Mov2DotDefName(axistype) axisloc = {.x = 0, .y = 0}; \
+    ae2f_struct ae2f_Mov2DotDefName(vectype) posloc = {.x = 0, .y = 0}; \
     if(!axis) axis = &axisloc; \
     if(pos) posloc = pos[0]; \
-    ae2f_Mov2DotRotDefName(type)(&posloc, &axisloc, -rot); \
-    return ae2f_Mov2RectColGetDefName(type)(&posloc, rect); \
+    ae2f_Mov2DotRotDefName(vectype, axistype)(&posloc, &axisloc, -rot); \
+    return ae2f_Mov2RectColGetDefName(vectype)(&posloc, rect); \
 }
 
 #endif
