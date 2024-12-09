@@ -1,6 +1,6 @@
 #include <ae2f/mov2/Def.hpp>
 
-static int a() {
+int main() {
     using intdev = ae2f::mov2::Def<int>;
     intdev::Dot a, b;
     intdev::Rect r;

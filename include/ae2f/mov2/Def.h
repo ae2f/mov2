@@ -122,7 +122,8 @@ ae2f_Mov2Col_t ae2f_Mov2RectColGetDefName(type) \
 /// @see ae2f_Mov2DotRotDef
 #define ae2f_Mov2RectRotColGetDefName(vectype, axistype) ae2f_Mov2RectRotColGet_##vectype##_##axistype##_func
 
-/// @tparam type
+/// @tparam vectype type for pos
+/// @tparam axistype type for axis
 /// @brief
 /// Guess if `pos` is in `rect` suggesting 
 /// @param pos

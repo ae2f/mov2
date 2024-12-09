@@ -2,15 +2,17 @@
 #define ae2f_mov2_Def_hpp
 
 #include "Def.h"
-
 #include <ae2f/Pack/Beg.h>
 
 namespace ae2f { namespace mov2 {
-    template<typename t, typename v>
+    /// @tparam t type for pos
+    /// @tparam v type for axis
+    template<typename t, typename v = void>
     struct __Def;
 
+    /// @tparam t type for pos
     template<typename t>
-    struct __Def<t, void> {
+    struct __Def<t> {
         using Dot_t = ae2f_Mov2DotDef(t);
         using Rect_t = ae2f_Mov2RectDef(t);
 
@@ -28,6 +30,8 @@ namespace ae2f { namespace mov2 {
         }
     };
 
+    /// @tparam t type for pos
+    /// @tparam v type for axis
     template<typename t, typename v>
     struct __Def {
         public:
@@ -89,15 +93,40 @@ namespace ae2f { namespace mov2 {
 
         public:
 
+        /// @tparam v type for axis
+        /// @brief 
+        /// Rotate the vector in a axis. \n
+        /// Notice that it will define a function, not invoking.
+        /// @param vec Note the original buffer would change.
+        /// @param axis When 0 will consider axis as (0, 0)
+        /// @param rot Rotating angle
+        /// @return @ref ae2f_errGlob_OK
+        /// @exception @ref ae2f_errGlob_PTR_IS_NULL
         template<typename v>
         static inline ae2f_err_t Rot(Dot* vec, const typename Def<v>::Dot* axis, ae2f_float_t rot)  {
             return __Def<t, v>::Rot(vec, axis, rot);
         }
 
+        /// @brief
+        /// Guess if `pos` is in `rect`.
+        /// @param pos  Position
+        /// @param rect Rect
         static consteval ae2f_Mov2Col_t ColGet(const Dot* vec, const Rect* rect) {
-            return __Def<t, void>::ColGet(vec, rect);
+            return __Def<t>::ColGet(vec, rect);
         }
 
+        /// @tparam v type for axis
+        /// @brief
+        /// Guess if `pos` is in `rect` suggesting 
+        /// @param pos
+        /// @see ae2f_Mov2RectColGetDef
+        /// @see ae2f_Mov2DotRotDef
+        /// @param rect
+        /// @see ae2f_Mov2RectColGetDef
+        /// @param axis
+        /// @see ae2f_Mov2DotRotDef
+        /// @param rot
+        /// @see ae2f_Mov2DotRotDef
         template<typename v>
         static inline ae2f_Mov2Col_t RotColGet(const Dot* pos, const Rect* rect, const typename Def<v>::Dot* axis, ae2f_float_t rot) {
             return __Def<t, v>::RotColGet(pos, rect, axis, rot);
