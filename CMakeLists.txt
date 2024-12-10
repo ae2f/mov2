@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(mov2 VERSION 1.2.4 LANGUAGES C CXX)
+project(mov2 VERSION 1.2.5 LANGUAGES C CXX)
 enable_testing()
 if(NOT TARGET ${PROJECT_NAME})
 
