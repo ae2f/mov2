@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.10)
-project(mov2 VERSION 1.1.4 LANGUAGES C CXX)
+project(mov2 VERSION 1.2.4 LANGUAGES C CXX)
 enable_testing()
 if(NOT TARGET ${PROJECT_NAME})
 
 add_subdirectory(mod/ae2f/mov)
 
-ae2f_CoreLibProjTent(
-    ${PROJECT_NAME} INTERFACE include
+ae2f_CoreLibTent(
+    ${PROJECT_NAME} INTERFACE include ae2f
     "include/ae2f/mov2/Def.h"
     "include/ae2f/mov2/Def.hpp"
     "include/ae2f/mov2/Vec.h"
