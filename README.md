@@ -1,5 +1,5 @@
 # ae2f::mov2
-- Rel-v1.2.5
+- Rel-v1.2.6
 
 # Dependency
 - gcc

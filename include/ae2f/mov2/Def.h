@@ -64,7 +64,7 @@ ae2f_Mov2DotRotDefName(vectype, axistype) ( \
         vec->y - axis->y \
     ); \
     vec->x = trans.x * ___.y + trans.y * ___.x + axis->x; \
-    vec->x = trans.y * ___.y + trans.x * ___.x + axis->y; \
+    vec->y = trans.y * ___.y + trans.x * ___.x + axis->y; \
     return ae2f_errGlob_OK; \
 }
 
