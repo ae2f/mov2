@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.10)
-project(mov2 VERSION 1.2.6 LANGUAGES C CXX)
+project(mov2 VERSION 1.2.7 LANGUAGES C CXX)
 enable_testing()
+
+include(cmake/Core.cmake)
+
 if(NOT TARGET ${PROJECT_NAME})
 
-add_subdirectory(mod/ae2f/mov)
+ae2f_CoreLibFetch(ae2f mov Rel-v0.6.4)
 
 ae2f_CoreLibTent(
     ${PROJECT_NAME} INTERFACE include ae2f
