@@ -3,7 +3,9 @@ option(ae2f_DOC "When activated, it would generate project with the deaders of c
 option(ae2f_TEST "When activated, it would generate test projects." ON)
 set(ae2f_float float CACHE STRING "Float type for the template.")
 set(ae2f_packcount 0 CACHE STRING "Pack count for pre-defined structures.")
-set(ae2f_LibDirGlob ${CMAKE_CURRENT_SOURCE_DIR}/mod CACHE STRING "A directory where the fetched library would stay.")
+set(ae2f_ProjRoot ${CMAKE_CURRENT_SOURCE_DIR} CACHE STRING "Current Source Root")
+set(ae2f_BinRoot ${CMAKE_CURRENT_BINARY_DIR} CACHE STRING "Current Binary Root")
+
 if(ae2f_IS_SHARED)
     set(ae2f_LIBPREFIX SHARED CACHE STRING "SHARED")
 else()
@@ -146,12 +148,12 @@ endfunction()
 # @param prm_TagName
 # Tag name
 function(ae2f_CoreLibFetch prm_AuthorName prm_TarName prm_TagName)
-    if(NOT EXISTS ${ae2f_LibDirGlob}/${prm_AuthorName}/${prm_TarName}/CMakeLists.txt)
+    if(NOT EXISTS ${ae2f_ProjRoot}/submod/${prm_AuthorName}/${prm_TarName}/CMakeLists.txt)
         execute_process(
             COMMAND 
             git clone 
             https://github.com/${prm_AuthorName}/${prm_TarName} 
-            ${ae2f_LibDirGlob}/${prm_AuthorName}/${prm_TarName}
+            ${ae2f_ProjRoot}/submod/${prm_AuthorName}/${prm_TarName}
             --branch ${prm_TagName}
             RESULT_VARIABLE result
         )
@@ -161,5 +163,8 @@ function(ae2f_CoreLibFetch prm_AuthorName prm_TarName prm_TagName)
         endif()
     endif()
 
-    add_subdirectory(${ae2f_LibDirGlob}/${prm_AuthorName}/${prm_TarName})
+    add_subdirectory(
+        ${ae2f_ProjRoot}/submod/${prm_AuthorName}/${prm_TarName}
+        ${ae2f_BinRoot}/submod/${prm_AuthorName}/${prm_TarName}
+    )
 endfunction()
