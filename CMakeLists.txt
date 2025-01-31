@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.10)
-project(mov2 VERSION 1.3.9 LANGUAGES C CXX)
+project(mov2 VERSION 1.4.9 LANGUAGES C CXX)
 enable_testing()
 
 include(cmake/Core.cmake)
 
 if(NOT TARGET ${PROJECT_NAME})
 
-ae2f_CoreLibFetch(ae2f mov Rel-v0.7.4)
+ae2f_CoreLibFetch(ae2f mov Rel-v0.8.4)
 
 ae2f_CoreLibTent(
     ${PROJECT_NAME} INTERFACE include ae2f
